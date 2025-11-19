@@ -6,7 +6,7 @@ public class SMS {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/sms2";
         String user = "root";
-        String password = "BlueJay9.";
+        String password = "password";
         //Reports("enrollment", url, user, password);
         Reports("department", url, user, password);  
     }
