@@ -21,9 +21,6 @@ export default function CourseCard({ course }: CourseCardProps) {
           </Box>
           <Heading size="md">{course.code}</Heading>
           <Text color="gray.600">{course.name}</Text>
-          <Text fontSize="sm" color="gray.500">
-            {course.projectCount} projects/labs
-          </Text>
         </Stack>
       </Card.Body>
     </Card.Root>

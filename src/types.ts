@@ -3,7 +3,6 @@ export interface Course {
   code: string
   name: string
   language: 'python' | 'java' | 'c' | 'r' | 'assembly' | 'mixed'
-  projectCount: number
   path: string
 }
 
