@@ -1,4 +1,6 @@
 import type { Course } from '../types'
+import img1301 from '../assets/course-images/1301.png'
+import img1302 from '../assets/course-images/1302.png'
 
 export const courses: Course[] = [
   {
@@ -6,14 +8,16 @@ export const courses: Course[] = [
     code: 'CSC 1301',
     name: 'Principles of Computer Science I',
     language: 'python',
-    path: '1301 - Principles of Computer Science I'
+    path: '1301 - Principles of Computer Science I',
+    image: img1301
   },
   {
     id: 'csc-1302',
     code: 'CSC 1302',
     name: 'Principles of Computer Science II',
     language: 'python',
-    path: '1302 - Principles of Computer Science II'
+    path: '1302 - Principles of Computer Science II',
+    image: img1302
   },
   {
     id: 'csc-2510',
@@ -63,13 +67,6 @@ export const courses: Course[] = [
     name: 'Operating Systems',
     language: 'java',
     path: '4320 - Operating Systems'
-  },
-  {
-    id: 'csc-4351',
-    code: 'CSC 4351',
-    name: 'Capstone',
-    language: 'mixed',
-    path: '4351 - Capstone'
   },
   {
     id: 'csc-4370',
