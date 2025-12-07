@@ -3,6 +3,9 @@ __pycache__/
 __MACOSX/
 *.jar
 
+# Not uploading assignment files
+*.pdf
+
 # Logs
 logs
 *.log
