@@ -11,6 +11,7 @@ export default function CourseCard({ course }: CourseCardProps) {
       _hover={{ transform: 'translateY(-4px)', shadow: 'xl' }}
       transition="all 0.3s"
       cursor="pointer"
+      border={0}
     >
       <Card.Body>
         <Stack gap={3} alignItems={'center'}>
