@@ -25,7 +25,7 @@ export default function CourseCard({ course }: CourseCardProps) {
 
           <Image 
             w={'200px'} 
-            h={'100%'} 
+            h={'200px'} 
             objectFit="cover" 
             src={course.image} 
             alt={course.name} 
