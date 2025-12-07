@@ -4,12 +4,12 @@ import { courses } from './data/courses'
 
 function App() {
   return (
-    <Box minH="100vh" minW={"90w"} bg="#0071CE" py={10}>
-      <Container color={'white'} maxW="container.xl">
-        <Heading size="5xl" mb={8} textAlign="center">
+    <Box minH="100vh" minW={"90w"} bg="#fff" py={10}>
+      <Container color={'black'} maxW="container.xl">
+        <Heading size="5xl" mb={8} fontWeight={'light'} textAlign="center">
           GSU Computer Science Portfolio
         </Heading>
-        <Heading size="2xl" mb={6} textAlign="center">
+        <Heading size="2xl" mb={6} fontWeight={'light'} textAlign="center">
           Steven Acosta-Pliego
         </Heading>
         

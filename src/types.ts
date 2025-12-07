@@ -4,6 +4,7 @@ export interface Course {
   name: string
   language: 'python' | 'java' | 'c' | 'r' | 'assembly' | 'mixed'
   path: string
+  image?: string
 }
 
 export interface Project {

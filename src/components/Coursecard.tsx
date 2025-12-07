@@ -1,4 +1,4 @@
-import { Card, Heading, Text, Badge, Box, Stack } from '@chakra-ui/react'
+import { Card, Heading, Text, Stack, Image } from '@chakra-ui/react'
 import type { Course } from '../types'
 
 interface CourseCardProps {
@@ -13,13 +13,23 @@ export default function CourseCard({ course }: CourseCardProps) {
       cursor="pointer"
     >
       <Card.Body>
-        <Stack gap={3}>
-          <Box>
-            <Badge colorScheme={course.language === 'python' ? 'blue' : course.language === 'java' ? 'red' : 'green'}>
-              {course.language.toUpperCase()}
-            </Badge>
-          </Box>
-          <Heading size="md">{course.code}</Heading>
+        <Stack gap={3} alignItems={'center'}>
+
+          <Heading 
+            fontSize={'3xl'}
+            fontWeight={'light'}
+            >
+              {course.code}
+          </Heading>
+
+          <Image 
+            w={'200px'} 
+            h={'100%'} 
+            objectFit="cover" 
+            src={course.image} 
+            alt={course.name} 
+            />
+
           <Text color="gray.600">{course.name}</Text>
         </Stack>
       </Card.Body>
