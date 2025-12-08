@@ -1,0 +1,7 @@
+jupyter
+notebook
+pyspark
+ray[all]
+matplotlib
+numpy
+ipykernel
