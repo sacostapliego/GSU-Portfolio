@@ -1,0 +1,74 @@
+/* Rigged for attempt 3: Win */
+.reel:nth-of-type(1) { --stop-y: -70%; }  /* 🍒 (pos1) in middle */
+.reel:nth-of-type(2) { --stop-y: -50%; } /* 🍒 (pos7) in middle */
+.reel:nth-of-type(3) { --stop-y: -30%; } /* 🍒 (pos5) in middle */
+
+/* Messages */
+#spinToggle:not(:checked) ~ .controls .message-bar .msg-spinning { opacity: 1; transform: none; display: block; z-index: 1; }
+#spinToggle:checked ~ .controls .message-bar .msg-win { 
+  opacity: 1; 
+  display: block; 
+  animation: show-win 0.8s ease-in forwards; 
+}
+
+/* Win effects */
+#spinToggle:checked ~ .win-line {
+  animation: win-flash var(--win-pulse) ease-in-out 8 alternate;
+  box-shadow: 0 0 0 2px var(--win), 0 0 36px rgba(130,255,158,0.65), 0 0 8px rgba(124,218,255,0.35) inset;
+}
+#spinToggle:checked ~ .confetti .piece {
+  opacity: 1;
+  animation: confetti-fall var(--dur) cubic-bezier(.25,.6,.2,1) var(--delay) 1 both,
+             confetti-rot var(--dur) linear var(--delay) 1 both;
+}
+
+/* Base confetti container */
+#spinToggle:checked ~ .confetti {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Default confetti style */
+#spinToggle:checked ~ .confetti .piece {
+  position: absolute;
+  top: -100%;
+  opacity: 1;
+  border-radius: 50%;
+  background: hsl(var(--hue, 200), 80%, 55%);
+  width: var(--size, 8px);
+  height: var(--size, 8px);
+  animation: confetti-fall var(--dur, 2.5s) ease-out var(--delay, 0s) 1 both;
+  will-change: transform, opacity;
+}
+
+/* Distribute confetti in repeating nth-child patterns */
+#spinToggle:checked ~ .confetti .piece:nth-child(n)   { width: 12px; height: 6px; border-radius: 2px; }
+
+/* Horizontal drift (0% → 100% spread) */
+#spinToggle:checked ~ .confetti .piece:nth-child(10n+1)  { left: 1%;   --ty: 120vh; --rot-start: 0deg;   --rot-end: 720deg; --sx: 1; --hue: 330; }
+#spinToggle:checked ~ .confetti .piece:nth-child(10n+2)  { left: 10%;  --ty: 110vh; --rot-start: 45deg;  --rot-end: 680deg; --sx: -1; --hue: 48; }
+#spinToggle:checked ~ .confetti .piece:nth-child(10n+3)  { left: 20%;  --ty: 130vh; --rot-start: -30deg; --rot-end: 700deg; --sx: 1; --hue: 240; }
+#spinToggle:checked ~ .confetti .piece:nth-child(10n+4)  { left: 30%;  --ty: 125vh; --rot-start: 20deg;  --rot-end: 750deg; --sx: -1; --hue: 60; }
+#spinToggle:checked ~ .confetti .piece:nth-child(10n+5)  { left: 40%;  --ty: 135vh; --rot-start: -10deg; --rot-end: 730deg; --sx: 1; --hue: 180; }
+#spinToggle:checked ~ .confetti .piece:nth-child(10n+6)  { left: 50%;  --ty: 140vh; --rot-start: 15deg;  --rot-end: 710deg; --sx: -1; --hue: 300; }
+#spinToggle:checked ~ .confetti .piece:nth-child(10n+7)  { left: 60%;  --ty: 120vh; --rot-start: -20deg; --rot-end: 740deg; --sx: 1; --hue: 120; }
+#spinToggle:checked ~ .confetti .piece:nth-child(10n+8)  { left: 70%;  --ty: 115vh; --rot-start: 30deg;  --rot-end: 720deg; --sx: -1; --hue: 15; }
+#spinToggle:checked ~ .confetti .piece:nth-child(10n+9)  { left: 80%;  --ty: 125vh; --rot-start: -40deg; --rot-end: 700deg; --sx: 1; --hue: 210; }
+#spinToggle:checked ~ .confetti .piece:nth-child(10n+10) { left: 90%;  --ty: 130vh; --rot-start: 25deg;  --rot-end: 760deg; --sx: -1; --hue: 75; }
+
+/* Extend vertical variety (0% → 100%) */
+#spinToggle:checked ~ .confetti .piece:nth-child(1)  { top: -140%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(2n)  { top: -140%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(3n)  { top: -150%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(4n)  { top: -160%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(5n)  { top: -170%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(6n)  { top: -180%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(7n)  { top: -190%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(8n)  { top: -200%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(9n)  { top: -210%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(10n) { top: -220%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(11n) { top: -120%; }
+#spinToggle:checked ~ .confetti .piece:nth-child(12n) { top: -130%; }

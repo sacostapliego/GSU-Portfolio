@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Spinfinity Slots — Pure CSS Motion UI</title>
+    <meta name="description" content="A motion-first slot machine interface built with pure HTML & CSS: transforms, transitions, and keyframe animations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles1.css" />
+    <link rel="stylesheet" href="./animation.css" />
+  </head>
+  <body>
+    <!-- Global theme switch (pure CSS). Placed before the page wrapper so we can scope variables via sibling selector. -->
+    <input type="checkbox" id="themeSwitch" class="visually-hidden" aria-label="Toggle dark/light theme" />
+    <div class="page">
+      <header class="site-header" role="banner">
+        <h1 class="logo" aria-label="Spinfinity Slots">Spinfinity <span>Slots</span></h1>
+        <nav class="toolbar" aria-label="Toolbar">
+          <div class="theme-toggle" role="group" aria-label="Theme">
+            <!-- Pure CSS Theme toggle using :checked and CSS variables -->
+            <label for="themeSwitch" class="toggle">
+              <span class="sun" aria-hidden="true">☀️</span>
+              <span class="moon" aria-hidden="true">🌙</span>
+            </label>
+          </div>
+        </nav>
+      </header>
+
+      <main id="main" class="container" role="main">
+        <section class="intro" aria-labelledby="introTitle">
+          <h2 id="introTitle">Welcome to Spinfinity Slots</h2>
+          <p>A pure CSS slot machine demo. Click below to learn how to play or start trying!</p>
+          <div class="intro-links">
+            <label for="howtoToggle" class="info-toggle" aria-label="Open How To Play">How to Play</label>
+            <label for="aboutToggle" class="about-toggle" aria-label="Open About">About</label>
+            <a href="try1.html" class="try-link">Try the Slots</a>
+          </div>
+        </section>
+
+        <!-- How To Play / Info overlay (CSS-only modal) -->
+        <input type="checkbox" id="howtoToggle" class="visually-hidden" aria-label="Toggle how to play" />
+        <div class="howto-overlay" role="dialog" aria-modal="true" aria-labelledby="howtoTitle">
+          <div class="howto-card">
+            <h2 id="howtoTitle">How To Play</h2>
+            <p>Navigate to the try pages to experience the rigged sequence: lose → lose → win. Each page has a fixed outcome. Use the Spin / Stop button to play.</p>
+            <h3>Techniques used</h3>
+            <ul>
+              <li>CSS Grid and Flexbox for responsive layout</li>
+              <li>@keyframes for reel spin, stop, glow, and confetti</li>
+              <li>transform: translateY, rotateX, scale for motion & feedback</li>
+              <li>Theme toggle via CSS variables and prefers-color-scheme</li>
+              <li>Reduced motion support via prefers-reduced-motion</li>
+            </ul>
+            <label for="howtoToggle" class="close-overlay" aria-label="Close">Close</label>
+          </div>
+        </div>
+
+        <!-- About overlay (CSS-only modal) -->
+        <input type="checkbox" id="aboutToggle" class="visually-hidden" aria-label="Toggle about" />
+        <div class="howto-overlay" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+          <div class="howto-card">
+            <h2 id="aboutTitle">About Spinfinity Slots</h2>
+            <p>Built with pure HTML + CSS. Demonstrates transforms, transitions, and keyframes for motion-first UI. No JavaScript is used for interactions.</p>
+            <ul>
+              <li>CSS Grid/Flexbox responsive layout</li>
+              <li>Reel spin/stop with staggered timing</li>
+              <li>Theme toggle with CSS variables</li>
+              <li>Confetti and win-line effects</li>
+            </ul>
+            <label for="aboutToggle" class="close-overlay" aria-label="Close">Close</label>
+          </div>
+        </div>
+      </main>
+
+      <footer class="site-footer" role="contentinfo">
+        <p>
+          Built for Motion-First UI assignment. No JavaScript used.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+/* Additional styles specific to introduction page */
+.about-container {
+    max-width: 1000px;
+    max-height: fit-content;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 3em;
+    padding: 2em;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+body.theme-dark .hero {
+    background: rgba(30, 30, 50, 0.8);
+}
+
+.game-title {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    color: #c62828;
+}
+
+body.theme-dark .game-title {
+    color: #ff6b6b;
+}
+
+.tagline {
+    font-size: 1.3em;
+    color: #555;
+}
+
+body.theme-dark .tagline {
+    color: #bbb;
+}
+
+.about-section {
+    padding: 2em;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+body.theme-dark .about-section {
+    background: rgba(30, 30, 50, 0.8);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.team-member {
+    padding: 1.5em;
+    background: rgba(198, 40, 40, 0.05);
+    border-left: 4px solid #c62828;
+    border-radius: 8px;
+}
+
+body.theme-dark .team-member {
+    background: rgba(255, 107, 107, 0.1);
+    border-left-color: #ff6b6b;
+}
+
+.team-member h3 {
+    font-size: 1.3em;
+    margin-bottom: 0.5em;
+    color: #c62828;
+}
+
+body.theme-dark .team-member h3 {
+    color: #ff6b6b;
+}
+
+.team-member p {
+    margin: 0.5em 0;
+    line-height: 1.6;
+}
+
+.team-member ul {
+    text-align: left;
+    margin: 10px 0;
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.team-member ul li {
+    margin: 0.5em 0;
+}
+
+.action-box {
+    text-align: center;
+    margin-top: 3em;
+    padding: 2em;
+}
+
+.btn-start {
+    display: inline-block;
+    padding: 1.2em 3em;
+    background: linear-gradient(135deg, #c62828 0%, #a71c1c 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1.3em;
+    font-weight: bold;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-start:hover {
+    background: linear-gradient(135deg, #a71c1c 0%, #8b1515 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.btn-start:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Spinfinity Slots — Pure CSS Motion UI</title>
+    <meta name="description" content="A motion-first slot machine interface built with pure HTML & CSS: transforms, transitions, and keyframe animations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles2.css" />
+  <link rel="stylesheet" href="./animation.css" />
+  </head>
+  <body>
+    <div class="page">
+    <header class="site-header" role="banner">
+      <div class="back-home">
+        <a href="index.html" class="back-link">Back to Home</a>
+    </div>
+      <h1 class="logo" aria-label="Spinfinity Slots">Spinfinity <span>Slots</span></h1>
+    </header>
+
+    <main id="main" class="container" role="main">
+      <section class="machine" aria-labelledby="slotTitle">
+        <h2 id="slotTitle" class="sr-only">Slot Machine</h2>
+
+        <!-- Reel viewport and reels -->
+        <div class="reels" role="group" aria-label="Reels">
+          <!-- Use CSS animation-play-state toggled by a checkbox to simulate spin/stop without JS -->
+          <input type="checkbox" id="spinToggle" class="visually-hidden" aria-label="Spin reels" />
+
+          <div class="reel" aria-label="Reel 1">
+            <ul class="symbols">
+              <li>🍒</li>
+              <li>🍋</li>
+              <li>🔔</li>
+              <li>🍀</li>
+              <li>⭐</li>
+              <li>💎</li>
+              <li>7️⃣</li>
+              <li>🍇</li>
+              <li>🍒</li>
+              <li>🍋</li>
+            </ul>
+          </div>
+
+          <div class="reel" aria-label="Reel 2">
+            <ul class="symbols">
+              <li>🍋</li>
+              <li>🍀</li>
+              <li>⭐</li>
+              <li>💎</li>
+              <li>7️⃣</li>
+              <li>🍇</li>
+              <li>🍒</li>
+              <li>🔔</li>
+              <li>🍋</li>
+              <li>🍀</li>
+            </ul>
+          </div>
+
+          <div class="reel" aria-label="Reel 3">
+            <ul class="symbols">
+              <li>⭐</li>
+              <li>💎</li>
+              <li>7️⃣</li>
+              <li>🍇</li>
+              <li>🍒</li>
+              <li>🔔</li>
+              <li>🍋</li>
+              <li>🍀</li>
+              <li>⭐</li>
+              <li>💎</li>
+            </ul>
+          </div>
+
+          <div class="controls">
+            <label for="spinToggle" class="spin-button" role="button" aria-pressed="false">Stop</label>
+            <div class="message-bar" role="status" aria-live="polite">
+              <p class="msg msg-default">Ready to spin!</p>
+              <p class="msg msg-spinning">Spinning…</p>
+              <p class="msg msg-lose">Better luck next time! <a href="try3.html" class="spin-again">Spin Again</a></p>
+            </div>
+          </div>
+        </div>
+  </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <p>
+        Built for Motion-First UI assignment. No JavaScript used.
+      </p>
+    </footer>
+    </div>
+  </body>
+</html>
+
