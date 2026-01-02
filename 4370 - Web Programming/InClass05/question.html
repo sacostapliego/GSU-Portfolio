@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML>
+<html>
+ <head>
+   <title>Question and Answer</title>
+   <style>
+ 
+    body {
+      font-family: Calibri, sans-serif;
+      font-size: 3em;
+    }
+ 
+    #answer {
+      color: black;
+      width: 100px;
+
+      /* Part of your solution goes here */
+      position: relative;
+      animation: moveFraction 2s 1s forwards;
+      transform: translate(-500px, 60px); 
+    }
+ 
+    /* moveFraction goes here */
+    @keyframes moveFraction {
+      /* 0%: off screen left, 60px down, yellow */
+      0% {
+        color: yellow;
+        transform: translate(-355px, 60px);
+      }
+      /* 50%: below and right of the question */
+      50% {
+        transform: translate(0px, 60px);
+      }
+      /* 100%: next to = sign, red */
+      100% {
+        color: red;
+        transform: translate(0px, 0px);
+      }
+    }
+ 
+ 
+    #question {
+      /* Part of your solution goes here */
+      transition: transform 0.6s ease-in-out;
+    }
+ 
+    #question:hover {
+      /* Part of your solution goes here */
+      transform: scale(0.9);
+    }
+    
+    span {
+      display: inline-block;    
+    }
+
+    a {
+      font-size: 20px;
+      margin-top: 20px;
+      display: block;
+      text-decoration: none;
+    }
+ 
+   </style>
+ </head>
+ <body>
+    <a href="index.html"> Task 1 </a>
+    <span id="question">Question: &frac14; + &frac12; =</span>
+    <span id="answer">&frac34;</span> 
+ </body>
+</html>
