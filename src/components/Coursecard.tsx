@@ -7,33 +7,29 @@ interface CourseCardProps {
 
 export default function CourseCard({ course }: CourseCardProps) {
   return (
-    <Card.Root
-      _hover={{ transform: 'translateY(-4px)', shadow: 'xl' }}
-      transition="all 0.3s"
-      cursor="pointer"
-      border={0}
-    >
-      <Card.Body>
-        <Stack gap={3} alignItems={'center'}>
-
-          <Heading 
-            fontSize={'3xl'}
-            fontWeight={'light'}
-            >
+    <a href={course.link} target="_blank" rel="noopener noreferrer">
+      <Card.Root
+        _hover={{ transform: 'translateY(-4px)', shadow: 'xl' }}
+        transition="all 0.3s"
+        cursor="pointer"
+        border={0}
+      >
+        <Card.Body>
+          <Stack gap={3} alignItems={'center'}>
+            <Heading fontSize={'3xl'} fontWeight={'light'}>
               {course.code}
-          </Heading>
-
-          <Image 
-            w={'200px'} 
-            h={'200px'} 
-            objectFit="cover" 
-            src={course.image} 
-            alt={course.name} 
+            </Heading>
+            <Image
+              w={'200px'}
+              h={'200px'}
+              objectFit="cover"
+              src={course.image}
+              alt={course.name}
             />
-
-          <Text color="gray.600">{course.name}</Text>
-        </Stack>
-      </Card.Body>
-    </Card.Root>
+            <Text color="gray.600">{course.name}</Text>
+          </Stack>
+        </Card.Body>
+      </Card.Root>
+    </a>
   )
 }

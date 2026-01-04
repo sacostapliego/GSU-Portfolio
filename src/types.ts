@@ -5,6 +5,7 @@ export interface Course {
   language: 'python' | 'java' | 'c' | 'r' | 'assembly' | 'mixed'
   path: string
   image?: string
+  link?: string
 }
 
 export interface Project {

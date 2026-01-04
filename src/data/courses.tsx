@@ -91,7 +91,8 @@ export const courses: Course[] = [
     name: 'Web Programming',
     language: 'mixed',
     path: '4370 - Web Programming',
-    image: img4370
+    image: img4370,
+    link: './4370 - Web Programming/Assignment1/index.html'
   },
   {
     id: 'csc-4520',
