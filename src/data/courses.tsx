@@ -67,7 +67,8 @@ export const courses: Course[] = [
     name: 'System Level Programming',
     language: 'c',
     path: '3320 - System Level Programming',
-    image: img3320
+    image: img3320,
+    link: 'https://sacostapliego.github.io/Systems-Level-Programming/'
   },
   {
     id: 'csc-3350',
