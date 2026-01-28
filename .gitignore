@@ -30,3 +30,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# Only pdf files are in the 2510 folder
+!2510Assignment*.pdf
