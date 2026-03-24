@@ -19,7 +19,8 @@ export const courses: Course[] = [
     name: 'Principles of Computer Science I',
     language: 'python',
     path: '1301 - Principles of Computer Science I',
-    image: img1301
+    image: img1301,
+    link: '#/courses/csc-1301'
   },
   {
     id: 'csc-1302',

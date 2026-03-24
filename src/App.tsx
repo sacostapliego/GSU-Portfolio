@@ -1,8 +1,25 @@
 import { Box, Container, Heading, SimpleGrid } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import CourseCard from './components/Coursecard'
 import { courses } from './data/courses'
+import Csc1301Page from './pages/Csc1301Page'
 
 function App() {
+  const [hashRoute, setHashRoute] = useState(() => window.location.hash)
+
+  useEffect(() => {
+    const handleHashChange = () => setHashRoute(window.location.hash)
+    window.addEventListener('hashchange', handleHashChange)
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange)
+    }
+  }, [])
+
+  if (hashRoute === '#/courses/csc-1301') {
+    return <Csc1301Page onBack={() => (window.location.hash = '')} />
+  }
+
   return (
     <Box minH="100vh" minW={"90w"} bg="#fff" py={10}>
       <Container color={'black'} maxW="container.xl">
