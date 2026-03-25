@@ -13,11 +13,11 @@ import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import PyodideTerminal from '../components/PyodideTerminal'
 import { csc1301Programs } from '../data/csc1301Programs'
 
-interface Csc1301PageProps {
+interface CSC1301Props {
   onBack: () => void
 }
 
-export default function Csc1301Page({ onBack }: Csc1301PageProps) {
+export default function CSC1301({ onBack }: CSC1301Props) {
   const [selectedProgramIndex, setSelectedProgramIndex] = useState(0)
   const [activeView, setActiveView] = useState<'run' | 'code'>('run')
 
