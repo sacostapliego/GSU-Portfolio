@@ -10,3 +10,4 @@ dist/
 .DS_Store
 frontend/build/
 .pytest_cache/
+*.yml
