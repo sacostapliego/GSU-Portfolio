@@ -11,6 +11,8 @@ import img4320 from '../assets/course-images/4320.png'
 import img4370 from '../assets/course-images/4370.png'
 import img4520 from '../assets/course-images/4520.png'
 import img4760 from '../assets/course-images/4760.png'
+import img4311 from '../assets/course-images/4311.png'
+import img4850 from '../assets/course-images/4850.png'
 
 export const courses: Course[] = [
   {
@@ -111,5 +113,21 @@ export const courses: Course[] = [
     language: 'python',
     path: '4760 - Big Data Programming',
     image: img4760
+  },
+  {
+    id: 'csc-4311',
+    code: 'CSC 4311',
+    name: 'Cloud Computing',
+    language: 'python',
+    path: '4311 - Cloud Computing',
+    image: img4311
+  },
+  {
+    id: 'csc-4850',
+    code: 'CSC 4850',
+    name: 'Machine Learning',
+    language: 'python',
+    path: '4850 - Machine Learning',
+    image: img4850
   },
 ]
