@@ -174,7 +174,7 @@ function PortfolioHome({ onNavigation }: { onNavigation: (route: string) => void
 
         {/* SEARCH AND GRID SECTION */}
         <Container maxW="container.xl" ref={searchContainerRef} pos="relative" zIndex={20} mt={16}>
-            <VStack mb={10} w="full" maxW="lg" mx="auto" position="relative">
+            <VStack mb={10} w="full" maxW="lg" mx="auto" position="relative" zIndex={50}>
               <Box pos="relative" w="full">
                   {selectedLanguage && (
                       <Box pos="absolute" left={2} top="50%" transform="translateY(-50%)" zIndex={2}>
@@ -247,7 +247,7 @@ function PortfolioHome({ onNavigation }: { onNavigation: (route: string) => void
                                   fontSize="sm"
                                   bg={selectedLanguage === null ? "blue.500" : "gray.100"}
                                   color={selectedLanguage === null ? "white" : "gray.700"}
-                                  onClick={() => setSelectedLanguage(null)}
+                                  onClick={() => { setSelectedLanguage(null); setIsSearchFocused(false); }}
                               >
                                   All
                               </Box>
@@ -261,7 +261,7 @@ function PortfolioHome({ onNavigation }: { onNavigation: (route: string) => void
                                       textTransform="capitalize"
                                       bg={selectedLanguage === lang ? "blue.500" : "gray.100"}
                                       color={selectedLanguage === lang ? "white" : "gray.700"}
-                                      onClick={() => setSelectedLanguage(lang)}
+                                      onClick={() => { setSelectedLanguage(lang); setIsSearchFocused(false); }}
                                   >
                                       {lang}
                                   </Box>
