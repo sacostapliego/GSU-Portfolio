@@ -1,15 +1,7 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Stack,
-  Text,
-} from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Text, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import PyodideTerminal from '../components/PyodideTerminal'
 import { csc1301Programs } from '../data/csc1301Programs'
 
@@ -19,173 +11,97 @@ interface CSC1301Props {
 
 export default function CSC1301({ onBack }: CSC1301Props) {
   const [selectedProgramIndex, setSelectedProgramIndex] = useState(0)
-  const [activeView, setActiveView] = useState<'run' | 'code'>('run')
 
   const selectedProgram = csc1301Programs[selectedProgramIndex]
 
+  // VS Code Dark Theme Colors
+  const colors = {
+    pageBg: '#0f0f11', // Very dark background providing "gap" styling
+    bg: '#1e1e1e',
+    sidebar: '#252526',
+    border: '#3c3c3c',
+    text: '#cccccc',
+    activeText: '#ffffff',
+    activeBg: '#37373d',
+    header: '#323233',
+  }
+
   return (
-    <Box minH="100vh" bg="#000000" py={{ base: 3, md: 4 }}>
-      <Container maxW="100%" px={{ base: 3, md: 4 }}>
-        <Box
-          minH="calc(100vh - 32px)"
-          bg="#000000"
-          border="1px solid"
-          borderRadius="md"
-          p={{ base: 3, md: 4 }}
-        >
-          <Stack gap={4} h="full">
-            <Flex justify="space-between" align={{ base: 'start', md: 'center' }} direction={{ base: 'column', md: 'row' }} gap={3}>
-              <Heading color="#31ff77" fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace" size={{ base: 'lg', md: 'xl' }}>
-                CSC 1301 Terminal Session
-              </Heading>
-
-              <Button
-                onClick={onBack}
-                variant="outline"
-                borderColor="#1a8f49"
-                color="#31ff77"
-                bg="#000000"
-                _hover={{ bg: '#03180b', borderColor: '#4bff95' }}
-                fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace"
-                size="sm"
-              >
-                exit {'->'} courses
-              </Button>
-            </Flex>
-
-            <Box
-              border="1px solid"
-              borderColor="#1a8f49"
-              bg="#000000"
-              borderRadius="md"
-              p={3}
-              fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace"
-            >
-              <Text color="#80e5a8" mt={1}>Welcome to CSC 1301: Principles of Computer Science I.</Text>
-            </Box>
-
-            <Flex direction={{ base: 'column', lg: 'row' }} gap={4} align="stretch" flex="1">
-              <Box
-                w={{ base: '100%', lg: '36%' }}
-                border="1px solid"
-                borderColor="#1a8f49"
-                borderRadius="md"
-                p={3}
-                bg="#000000"
-                maxH={{ base: '280px', lg: 'none' }}
-                overflowY="auto"
-              >
-                <Text color="#31ff77" fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace" mb={3}>
-                  Available Programs
-                </Text>
-
-                <Stack gap={2}>
-                  {csc1301Programs.map((program, index) => {
-                    const selected = index === selectedProgramIndex
-                    return (
-                      <Button
-                        key={program.id}
-                        justifyContent="start"
-                        onClick={() => setSelectedProgramIndex(index)}
-                        bg={selected ? '#04381a' : '#000000'}
-                        color={selected ? '#72ffad' : '#8de3b0'}
-                        border="1px solid"
-                        borderColor={selected ? '#4bff95' : '#1a8f49'}
-                        _hover={{ bg: '#03250f', borderColor: '#4bff95' }}
-                        fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace"
-                        fontWeight="normal"
-                        size="sm"
-                        whiteSpace="normal"
-                        h="auto"
-                        py={2}
-                      >
-                        {`${index + 1}. ${program.fileName}`}
-                      </Button>
-                    )
-                  })}
-                </Stack>
-              </Box>
-
-              <Box
-                w={{ base: '100%', lg: '64%' }}
-                border="1px solid"
-                borderColor="#1a8f49"
-                borderRadius="md"
-                p={3}
-                bg="#000000"
-                overflow="hidden"
-              >
-                <Stack gap={3} h="full">
-                  <Box>
-                    <Text color="#31ff77" fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace">
-                      $ load {selectedProgram.fileName}
-                    </Text>
-                    <Text color="#8de3b0" fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace" mt={1}>
-                      {selectedProgram.description}
-                    </Text>
-                  </Box>
-
-                  <Flex gap={2} wrap="wrap">
-                    <Button
-                      onClick={() => setActiveView('run')}
-                      size="sm"
-                      bg={activeView === 'run' ? '#04381a' : '#000000'}
-                      color={activeView === 'run' ? '#72ffad' : '#8de3b0'}
-                      border="1px solid"
-                      borderColor={activeView === 'run' ? '#4bff95' : '#1a8f49'}
-                      _hover={{ bg: '#03250f', borderColor: '#4bff95' }}
-                      fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace"
-                    >
-                      run
-                    </Button>
-
-                    <Button
-                      onClick={() => setActiveView('code')}
-                      size="sm"
-                      bg={activeView === 'code' ? '#04381a' : '#000000'}
-                      color={activeView === 'code' ? '#72ffad' : '#8de3b0'}
-                      border="1px solid"
-                      borderColor={activeView === 'code' ? '#4bff95' : '#1a8f49'}
-                      _hover={{ bg: '#03250f', borderColor: '#4bff95' }}
-                      fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace"
-                    >
-                      code
-                    </Button>
-                  </Flex>
-
-                  {activeView === 'run' ? (
-                    <Box border="1px solid" borderColor="#1a8f49" borderRadius="md" p={3} bg="#000000">
-                      <Text color="#31ff77" fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace">
-                        $ {selectedProgram.runCommand}
-                      </Text>
-                      <Text color="#8de3b0" mt={2} mb={4} fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace">
-                        Running pyodide-adapted version in browser terminal.
-                      </Text>
-
-                      <PyodideTerminal
-                        programTitle={selectedProgram.title}
-                        sourceCode={selectedProgram.pyodideSourceCode}
-                        suggestedInput={selectedProgram.suggestedInput}
-                      />
-                    </Box>
-                  ) : (
-                    <Box border="1px solid" borderColor="#1a8f49" borderRadius="md" overflowX="auto">
-                      <SyntaxHighlighter
-                        language="python"
-                        style={atomDark}
-                        customStyle={{ margin: 0, background: '#000000', fontSize: '0.9rem' }}
-                        showLineNumbers
-                      >
-                        {selectedProgram.originalSourceCode}
-                      </SyntaxHighlighter>
-                    </Box>
-                  )}
-                </Stack>
-              </Box>
-            </Flex>
-          </Stack>
+    <Box h="100vh" w="100vw" bg={colors.pageBg} color={colors.text} display="flex" flexDirection="column" overflow="hidden">
+      {/* Main Content */}
+      <Flex flex={1} overflow="hidden" p={4} gap={4}>
+        {/* Sidebar */}
+        <Box w={{ base: '150px', md: '250px' }} bg={colors.sidebar} border="1px" borderColor={colors.border} borderRadius="xl" display="flex" flexDirection="column" overflow="hidden" boxShadow="lg">
+          <Text px={4} py={3} fontSize="xs" fontWeight="bold" textTransform="uppercase" color={colors.text} borderBottom="1px" borderColor={colors.border}>
+            Explorer
+          </Text>
+          <VStack align="stretch" gap={0} overflowY="auto" flex={1}>
+            {csc1301Programs.map((program, index) => {
+              const isActive = index === selectedProgramIndex
+              return (
+                <Box
+                  key={program.id}
+                  px={4}
+                  py={2}
+                  cursor="pointer"
+                  bg={isActive ? colors.activeBg : 'transparent'}
+                  color={isActive ? colors.activeText : colors.text}
+                  _hover={{ bg: isActive ? colors.activeBg : '#2a2d2e' }}
+                  onClick={() => setSelectedProgramIndex(index)}
+                  fontSize="sm"
+                  fontFamily="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                >
+                  <Text>📄 {program.fileName}</Text>
+                </Box>
+              )
+            })}
+          </VStack>
         </Box>
-      </Container>
+
+        {/* Editor Area */}
+        <Flex flex={1} direction="column" minW={0} gap={4}>
+          {/* Top Half: Code Editor */}
+          <Box flex={1} bg={colors.bg} border="1px" borderColor={colors.border} borderRadius="xl" display="flex" flexDirection="column" overflow="hidden" boxShadow="lg">
+            {/* Editor Tabs */}
+            <Flex h="38px" bg={colors.sidebar} borderBottom="1px " borderColor={colors.border} justify="space-between" align="center">
+               <Box h="100%" px={4} bg={colors.bg} color={colors.activeText} borderTop="2px solid #007acc" display="flex" alignItems="center">
+                 <Text fontSize="sm" whiteSpace="nowrap">📄 {selectedProgram.fileName}</Text>
+               </Box>
+               <Box pr={3}>
+                 <Button size="xs" onClick={onBack} colorScheme="blue" variant="solid" style={{ borderRadius: '6px' }}>
+                   Back to Courses
+                 </Button>
+               </Box>
+            </Flex>
+            {/* Code */}
+            <Box flex={1} overflow="auto" bg={colors.bg}>
+               <SyntaxHighlighter
+                 language="python"
+                 style={vscDarkPlus}
+                 customStyle={{ margin: 0, background: colors.bg, fontSize: '14px', minHeight: '100%' }}
+                 showLineNumbers
+               >
+                 {selectedProgram.originalSourceCode}
+               </SyntaxHighlighter>
+            </Box>
+          </Box>
+
+          {/* Bottom Half: Terminal */}
+          <Box h={{ base: "300px", md: "40%" }} bg={colors.bg} border="1px " borderColor={colors.border} borderRadius="xl" display="flex" flexDirection="column" overflow="hidden" boxShadow="lg">
+             <Flex h="38px" borderBottom="1px " borderColor={colors.border} align="center" px={4} bg={colors.sidebar}>
+                <Text fontSize="sm" fontWeight="bold" color={colors.text} textTransform="uppercase" letterSpacing="0.05em">TERMINAL</Text>
+             </Flex>
+             <Box flex={1} p={2} overflow="hidden">
+               <PyodideTerminal
+                 key={selectedProgram.id} // Add key to force re-render when changing programs
+                 programTitle={selectedProgram.title}
+                 sourceCode={selectedProgram.pyodideSourceCode}
+                 suggestedInput={selectedProgram.suggestedInput}
+               />
+             </Box>
+          </Box>
+        </Flex>
+      </Flex>
     </Box>
   )
 }

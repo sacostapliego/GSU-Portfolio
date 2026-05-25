@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Flex, Spinner, Stack, Text, Textarea } from '@chakra-ui/react'
+import { Alert, Box, Button, Flex, Spinner, Stack, Text } from '@chakra-ui/react'
 import { useMemo, useState } from 'react'
 
 interface PyodideTerminalProps {
@@ -85,29 +85,37 @@ import io
 import sys
 import traceback
 import builtins
+from js import prompt
 
-_raw_input = USER_INPUT.replace('\\r\\n', '\\n').replace('\\r', '\\n')
-_input_lines = _raw_input.split('\\n') if _raw_input != '' else []
-_input_index = 0
-
-
-def _portfolio_input(prompt=''):
-    global _input_index
-    if prompt:
-        print(prompt, end='')
-    if _input_index < len(_input_lines):
-        value = _input_lines[_input_index]
-        _input_index += 1
-        print(value)
-        return value
-    raise EOFError('Input exhausted in browser runner.')
-
-
-builtins.input = _portfolio_input
 _stdout = io.StringIO()
 _stderr = io.StringIO()
 _previous_stdout = sys.stdout
 _previous_stderr = sys.stderr
+
+def _portfolio_input(p=''):
+    if p:
+        print(p, end='')
+    
+    # Capture all output so far
+    current_out = _stdout.getvalue()
+    
+    # Extract the last 15 lines of the terminal output to provide context
+    # since the browser prompt will block the UI from updating the drawn terminal
+    lines = current_out.strip().split('\\n')
+    context = '\\n'.join(lines[-18:]) if lines else ''
+    
+    # Show the pyodide prompt dialog taking input from the user directly,
+    # and include the recent terminal output so they can see their cards!
+    prompt_msg = f"{context}\\n\\n{p}" if context else p
+    val = prompt(prompt_msg)
+    
+    if val is None:
+        raise EOFError('Input cancelled by user')
+    
+    print(val)
+    return val
+
+builtins.input = _portfolio_input
 
 try:
     sys.stdout = _stdout
@@ -123,7 +131,6 @@ RUN_OUTPUT = _stdout.getvalue() + _stderr.getvalue()
 `
 
 export default function PyodideTerminal({ programTitle, sourceCode, suggestedInput }: PyodideTerminalProps) {
-  const [stdinValue, setStdinValue] = useState(suggestedInput ?? '')
   const [outputValue, setOutputValue] = useState<string>('')
   const [errorValue, setErrorValue] = useState<string>('')
   const [isPreparing, setIsPreparing] = useState(false)
@@ -145,7 +152,6 @@ export default function PyodideTerminal({ programTitle, sourceCode, suggestedInp
 
       setIsRunning(true)
       pyodide.globals.set('USER_CODE', sourceCode)
-      pyodide.globals.set('USER_INPUT', stdinValue)
 
       await pyodide.runPythonAsync(RUNNER_SCRIPT)
       const result = (await pyodide.runPythonAsync('RUN_OUTPUT')) as string
@@ -164,54 +170,54 @@ export default function PyodideTerminal({ programTitle, sourceCode, suggestedInp
     }
   }
 
+  // VS Code Terminal Theme Colors
+  const colors = {
+    bg: '#1e1e1e', // Dark terminal background
+    text: '#cccccc', // Default terminal text gray
+    border: '#3c3c3c', // Editor borders
+    buttonBg: '#3a3d41', // Standard VS Code button style
+    buttonHover: '#4d5157',
+    buttonBorder: '#3c3c3c',
+  }
+
+  const fontFamily = "'Consolas', 'Courier New', monospace"
+
   return (
-    <Stack gap={4}>
-      <Text color="#9ef7c4" fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace" fontSize="0.95rem">
-        Input lines (one per prompt):
-      </Text>
-
-      <Textarea
-        value={stdinValue}
-        onChange={(event) => setStdinValue(event.target.value)}
-        placeholder="Type input lines here..."
-        minH="110px"
-        bg="#000000"
-        color="#31ff77"
-        borderColor="#11632f"
-        _focusVisible={{ borderColor: '#31ff77', boxShadow: '0 0 0 1px #31ff77 inset' }}
-        fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace"
-      />
-
+    <Stack gap={4} h="100%" display="flex" flexDirection="column">
       <Flex gap={3} wrap="wrap">
         <Button
+          size="sm"
           onClick={handleRun}
           disabled={!canRun}
-          bg="#022d13"
-          color="#72ffad"
+          bg={colors.buttonBg}
+          color={colors.text}
           border="1px solid"
-          borderColor="#1e9e53"
-          _hover={{ bg: '#03411b' }}
-          fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace"
+          borderColor={colors.buttonBorder}
+          _hover={{ bg: colors.buttonHover }}
+          fontFamily={fontFamily}
+          fontWeight="normal"
         >
-          {isPreparing ? 'Loading Pyodide...' : isRunning ? 'Running...' : 'Run in Browser'}
+          {isPreparing ? 'Loading Pyodide...' : isRunning ? 'Running...' : 'Run Code'}
         </Button>
 
         <Button
+          size="sm"
           onClick={() => setOutputValue('')}
           variant="outline"
-          borderColor="#1e9e53"
-          color="#72ffad"
-          _hover={{ bg: '#022d13' }}
-          fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace"
+          borderColor={colors.buttonBorder}
+          color={colors.text}
+          _hover={{ bg: colors.buttonHover }}
+          fontFamily={fontFamily}
+          fontWeight="normal"
         >
           Clear Output
         </Button>
 
-        {(isPreparing || isRunning) && <Spinner color="#72ffad" size="sm" mt={2} />}
+        {(isPreparing || isRunning) && <Spinner color="#4d5157" size="sm" mt={1} />}
       </Flex>
 
       {errorValue && (
-        <Alert.Root status="error" bg="#2b0000" borderColor="#7a1c1c" color="#ffd8d8">
+        <Alert.Root status="error" bg="#4d1212" borderColor="#c92a2a" color="#ffd8d8">
           <Alert.Indicator />
           <Alert.Content>
             <Alert.Title>Runner Error</Alert.Title>
@@ -221,25 +227,24 @@ export default function PyodideTerminal({ programTitle, sourceCode, suggestedInp
       )}
 
       <Box
-        bg="#000000"
+        flex={1}
+        bg={colors.bg}
         border="1px solid"
-        borderColor="#1e9e53"
-        borderRadius="md"
-        p={4}
+        borderColor="transparent"
+        p={2}
         minH="180px"
-        maxH="340px"
         overflowY="auto"
-        boxShadow="inset 0 0 24px rgba(18, 160, 73, 0.25)"
       >
         <Text
           whiteSpace="pre-wrap"
-          color="#31ff77"
-          fontFamily="'Cascadia Code', 'Consolas', 'Fira Code', monospace"
-          fontSize="0.9rem"
+          color={colors.text}
+          fontFamily={fontFamily}
+          fontSize="14px"
         >
-          {outputValue || '[terminal idle] Press Run in Browser to execute this script.'}
+          {outputValue || ''}
         </Text>
       </Box>
     </Stack>
   )
 }
+
