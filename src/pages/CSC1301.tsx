@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Text, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -27,7 +27,7 @@ export default function CSC1301({ onBack }: CSC1301Props) {
   }
 
   return (
-    <Box h="100vh" w="100vw" bg={colors.pageBg} color={colors.text} display="flex" flexDirection="column" overflow="hidden">
+    <Box h="100vh" w="100vw" bg={colors.pageBg} color={colors.text} display="flex" flexDirection="column" overflow="hidden" fontFamily="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
       {/* Main Content */}
       <Flex flex={1} overflow="hidden" p={4} gap={4}>
         {/* Sidebar */}
