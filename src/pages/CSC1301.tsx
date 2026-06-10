@@ -11,6 +11,7 @@ interface CSC1301Props {
 
 export default function CSC1301({ onBack }: CSC1301Props) {
   const [selectedProgramIndex, setSelectedProgramIndex] = useState(0)
+  const [isHomeHovered, setIsHomeHovered] = useState(false)
 
   const selectedProgram = csc1301Programs[selectedProgramIndex]
 
@@ -153,55 +154,90 @@ export default function CSC1301({ onBack }: CSC1301Props) {
         bottom="16px"
         left="50%"
         transform="translateX(-50%)"
-        direction="column"
+        display="inline-flex"
+        w="fit-content"
+        bg="rgba(255, 255, 255, 0.06)"
+        borderRadius="20px"
+        px={2.5}
+        py={2}
+        gap={2.5}
+        boxShadow="0 8px 32px rgba(0, 0, 0, 0.18)"
         alignItems="center"
-        gap={2}
+        justifyContent="center"
+        overflow="visible"
+        zIndex={10}
+        style={{
+          backdropFilter: 'blur(28px) saturate(160%)',
+          WebkitBackdropFilter: 'blur(28px) saturate(160%)',
+        }}
       >
-        <Text
-          px={4}
-          py={1.5}
-          borderRadius="full"
-          bg="rgba(255, 255, 255, 0.12)"
-          border="1px solid rgba(255, 255, 255, 0.18)"
-          color="#f5f7fb"
-          fontSize="sm"
-          fontWeight="medium"
-          letterSpacing="0.02em"
-          backdropFilter="blur(12px)"
+        <Box
+          position="relative"
+          flexShrink={0}
+          onMouseEnter={() => setIsHomeHovered(true)}
+          onMouseLeave={() => setIsHomeHovered(false)}
         >
-          Go back home
-        </Text>
+          <Text
+            position="absolute"
+            bottom="calc(100% + 8px)"
+            left="50%"
+            transform="translateX(-50%)"
+            px={3}
+            py={1}
+            borderRadius="full"
+            bg="rgba(30, 30, 30, 0.8)"
+            color="white"
+            fontSize="sm"
+            fontWeight="bold"
+            whiteSpace="nowrap"
+            opacity={isHomeHovered ? 1 : 0}
+            pointerEvents="none"
+            transition="opacity 0.15s ease"
+            zIndex={20}
+          >
+            Home
+          </Text>
 
-        <Flex
-          bg="rgba(255, 255, 255, 0.15)"
-          backdropFilter="blur(24px)"
-          border="1px solid rgba(255, 255, 255, 0.3)"
-          borderRadius="2xl"
-          px={4}
-          py={3}
-          gap={3}
-          boxShadow="0 25px 50px -12px rgba(0, 0, 0, 0.5)"
-          alignItems="center"
-        >
-          <Flex
+          <Box
             as="button"
             onClick={onBack}
-            w="64px"
-            h="64px"
-            bg="rgba(255, 255, 255, 0.08)"
-            borderRadius="24px"
-            justify="center"
-            align="center"
+            w="52px"
+            h="52px"
+            borderRadius="12px"
+            overflow="hidden"
             cursor="pointer"
-            border="1px solid rgba(255, 255, 255, 0.18)"
-            title="Go back home"
+            border="none"
+            p={0}
+            m={0}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            bg="transparent"
+            transition="transform 0.15s ease"
+            transform={isHomeHovered ? 'scale(1.08)' : 'scale(1)'}
           >
-            <Image src="/image.png" alt="GSU logo" boxSize="44px" objectFit="contain" />
-          </Flex>
-          <Box w="64px" h="64px" borderRadius="24px" bg="rgba(255, 255, 255, 0.08)" border="1px solid rgba(255, 255, 255, 0.12)" />
-          <Box w="64px" h="64px" borderRadius="24px" bg="rgba(255, 255, 255, 0.08)" border="1px solid rgba(255, 255, 255, 0.12)" />
-          <Box w="64px" h="64px" borderRadius="24px" bg="rgba(255, 255, 255, 0.08)" border="1px solid rgba(255, 255, 255, 0.12)" />
-        </Flex>
+            <Image
+              src="/image.png"
+              alt="Home"
+              w="100%"
+              h="100%"
+              objectFit="cover"
+              objectPosition="center"
+              display="block"
+            />
+          </Box>
+        </Box>
+
+        {[0, 1, 2].map((slot) => (
+          <Box
+            key={slot}
+            w="52px"
+            h="52px"
+            borderRadius="12px"
+            bg="rgba(255, 255, 255, 0.1)"
+            flexShrink={0}
+          />
+        ))}
       </Flex>
     </Box>
   )
