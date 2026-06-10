@@ -64,7 +64,7 @@ export default function CSC1301({ onBack }: CSC1301Props) {
           </Flex>
           
           <Text flex={2} textAlign="center" fontSize="xs" color="#8b949e">
-            GSU Portfolio - Visual Studio Code
+            GSU Portfolio
           </Text>
 
           <Flex flex={1} justify="flex-end">
@@ -153,34 +153,54 @@ export default function CSC1301({ onBack }: CSC1301Props) {
         bottom="16px"
         left="50%"
         transform="translateX(-50%)"
-        bg="rgba(255, 255, 255, 0.15)"
-        backdropFilter="blur(24px)"
-        border="1px solid rgba(255, 255, 255, 0.3)"
-        borderRadius="2xl"
-        p={2.5}
-        gap={3}
-        boxShadow="0 25px 50px -12px rgba(0, 0, 0, 0.5)"
+        direction="column"
         alignItems="center"
+        gap={2}
       >
-        <Flex
-          as="button"
-          onClick={onBack}
-          w="64px"
-          h="64px"
-          bgGradient="to-br"
-          gradientFrom="#a855f7"
-          gradientTo="#4f46e5"
-          borderRadius="25%"
-          justify="center"
-          align="center"
-          boxShadow="lg"
-          cursor="pointer"
-          _hover={{ transform: 'scale(1.15) translateY(-10px)' }}
-          transition="all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)"
-          border="1px solid rgba(255, 255, 255, 0.2)"
-          title="Back to Homepage"
+        <Text
+          px={4}
+          py={1.5}
+          borderRadius="full"
+          bg="rgba(255, 255, 255, 0.12)"
+          border="1px solid rgba(255, 255, 255, 0.18)"
+          color="#f5f7fb"
+          fontSize="sm"
+          fontWeight="medium"
+          letterSpacing="0.02em"
+          backdropFilter="blur(12px)"
         >
-          <Text fontSize="3xl" filter="drop-shadow(0px 2px 4px rgba(0,0,0,0.4))">🏠</Text>
+          Go back home
+        </Text>
+
+        <Flex
+          bg="rgba(255, 255, 255, 0.15)"
+          backdropFilter="blur(24px)"
+          border="1px solid rgba(255, 255, 255, 0.3)"
+          borderRadius="2xl"
+          px={4}
+          py={3}
+          gap={3}
+          boxShadow="0 25px 50px -12px rgba(0, 0, 0, 0.5)"
+          alignItems="center"
+        >
+          <Flex
+            as="button"
+            onClick={onBack}
+            w="64px"
+            h="64px"
+            bg="rgba(255, 255, 255, 0.08)"
+            borderRadius="24px"
+            justify="center"
+            align="center"
+            cursor="pointer"
+            border="1px solid rgba(255, 255, 255, 0.18)"
+            title="Go back home"
+          >
+            <Image src="/image.png" alt="GSU logo" boxSize="44px" objectFit="contain" />
+          </Flex>
+          <Box w="64px" h="64px" borderRadius="24px" bg="rgba(255, 255, 255, 0.08)" border="1px solid rgba(255, 255, 255, 0.12)" />
+          <Box w="64px" h="64px" borderRadius="24px" bg="rgba(255, 255, 255, 0.08)" border="1px solid rgba(255, 255, 255, 0.12)" />
+          <Box w="64px" h="64px" borderRadius="24px" bg="rgba(255, 255, 255, 0.08)" border="1px solid rgba(255, 255, 255, 0.12)" />
         </Flex>
       </Flex>
     </Box>
