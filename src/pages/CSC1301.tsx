@@ -53,7 +53,7 @@ export default function CSC1301({ onBack }: CSC1301Props) {
         overflow="hidden"
         border="1px solid"
         borderColor="#3c3c3c"
-        mb={10} // Offset a bit to make room for the dock visually
+        mb={20} // Offset a bit to make room for the dock visually
       >
         {/* Title Bar (macOS style) */}
         <Flex h="36px" bg={colors.sidebar} align="center" justify="space-between" px={4}>
@@ -131,7 +131,7 @@ export default function CSC1301({ onBack }: CSC1301Props) {
             </Box>
 
             {/* Bottom Half: Terminal */}
-            <Box h={{ base: "30rem", md: "45%" }} bg={colors.bg} borderTop="1px" borderColor={colors.border} display="flex" flexDirection="column" overflow="hidden">
+            <Box h={{ base: "22rem", md: "32%" }} bg={colors.bg} borderTop="1px" borderColor={colors.border} display="flex" flexDirection="column" overflow="hidden">
                <Flex h="40px" align="center" px={5}>
                   <Text fontSize="14px" fontWeight="semibold" color={colors.text} textTransform="uppercase" letterSpacing="0.05em">TERMINAL</Text>
                </Flex>
@@ -157,10 +157,10 @@ export default function CSC1301({ onBack }: CSC1301Props) {
         display="inline-flex"
         w="fit-content"
         bg="rgba(255, 255, 255, 0.06)"
-        borderRadius="20px"
-        px={2.5}
-        py={2}
-        gap={2.5}
+        borderRadius="24px"
+        px={3.5}
+        py={2.5}
+        gap={3}
         boxShadow="0 8px 32px rgba(0, 0, 0, 0.18)"
         alignItems="center"
         justifyContent="center"
@@ -201,9 +201,9 @@ export default function CSC1301({ onBack }: CSC1301Props) {
           <Box
             as="button"
             onClick={onBack}
-            w="52px"
-            h="52px"
-            borderRadius="12px"
+            w="64px"
+            h="64px"
+            borderRadius="14px"
             overflow="hidden"
             cursor="pointer"
             border="none"
@@ -231,9 +231,9 @@ export default function CSC1301({ onBack }: CSC1301Props) {
         {[0, 1, 2].map((slot) => (
           <Box
             key={slot}
-            w="52px"
-            h="52px"
-            borderRadius="12px"
+            w="64px"
+            h="64px"
+            borderRadius="14px"
             bg="rgba(255, 255, 255, 0.1)"
             flexShrink={0}
           />
