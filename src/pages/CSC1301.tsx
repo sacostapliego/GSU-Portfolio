@@ -31,9 +31,11 @@ export default function CSC1301({ onBack }: CSC1301Props) {
     <Box
       h="100vh"
       w="100vw"
-      bgGradient="to-br"
-      gradientFrom="#2563eb"
-      gradientTo="#7c3aed"
+      bgImage={`linear-gradient(rgba(15, 15, 17, 0.35), rgba(15, 15, 17, 0.65)), url('/gsu_background.jpg')`}
+      bgSize="cover"
+      bgPos="center"
+      bgRepeat="no-repeat"
+      bgAttachment="fixed"
       color={colors.text}
       display="flex"
       alignItems="center"
