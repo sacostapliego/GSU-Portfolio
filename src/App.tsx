@@ -3,9 +3,10 @@ import { useEffect, useState, useRef, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { courses } from './data/courses'
 import CSC1301 from './pages/CSC1301'
+import CourseExplorer from './pages/CourseExplorer'
 import type { Course } from './types'
 
-const MotionBox = motion(Box as any)
+const MotionBox = motion.create(Box)
 
 function App() {
   const [hashRoute, setHashRoute] = useState(() => window.location.hash)
@@ -23,9 +24,37 @@ function App() {
     return <CSC1301 onBack={() => (window.location.hash = '')} />
   }
 
+  // Every other course without its own page: #/courses/<id>/<path inside the course folder>
+  const courseRoute = hashRoute.match(/^#\/courses\/([^/]+)\/?(.*)$/)
+  const routedCourse = courseRoute && courses.find((c) => c.id === courseRoute[1])
+  if (courseRoute && routedCourse) {
+    return (
+      <CourseExplorer
+        key={routedCourse.id}
+        course={routedCourse}
+        path={decodeCoursePath(courseRoute[2])}
+        onNavigate={(path) => (window.location.hash = courseHash(routedCourse.id, path))}
+        onBack={() => (window.location.hash = '')}
+      />
+    )
+  }
+
   return <PortfolioHome onNavigation={(route) => {
     window.location.hash = route
   }}/>
+}
+
+function courseHash(courseId: string, path: string) {
+  const encoded = path.split('/').filter(Boolean).map(encodeURIComponent).join('/')
+  return `#/courses/${courseId}${encoded ? `/${encoded}` : ''}`
+}
+
+function decodeCoursePath(encoded: string) {
+  try {
+    return encoded.split('/').filter(Boolean).map(decodeURIComponent).join('/')
+  } catch {
+    return ''
+  }
 }
 
 function PortfolioHome({ onNavigation }: { onNavigation: (route: string) => void }) {
@@ -70,13 +99,15 @@ function PortfolioHome({ onNavigation }: { onNavigation: (route: string) => void
   const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + courses.length) % courses.length)
 
   const handleLinkCourse = (course: Course) => {
-    if (course.link) {
-      const isExternal = /^https?:\/\//.test(course.link)
-      if (isExternal) {
-        window.open(course.link, '_blank')
-      } else {
-        onNavigation(course.link)
-      }
+    if (!course.link) {
+      onNavigation(courseHash(course.id, ''))
+      return
+    }
+    const isExternal = /^https?:\/\//.test(course.link)
+    if (isExternal) {
+      window.open(course.link, '_blank')
+    } else {
+      onNavigation(course.link)
     }
   }
 
@@ -96,9 +127,9 @@ function PortfolioHome({ onNavigation }: { onNavigation: (route: string) => void
         
         const isVisible = Math.abs(diff) <= windowOffset
         
-        let zIndex = 10 - Math.abs(diff)
+        const zIndex = 10 - Math.abs(diff)
         // Scaled down progressively so they fit cleanly side-by-side on screen
-        let scale = diff === 0 ? 1 : 0.9 - Math.abs(diff) * 0.1
+        const scale = diff === 0 ? 1 : 0.9 - Math.abs(diff) * 0.1
         let opacity = diff === 0 ? 1 : 0.6
         
         // Spread items apart using relative sizing instead of absolute fixed pixels

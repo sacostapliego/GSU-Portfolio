@@ -6,7 +6,8 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  // Course folders hold archived coursework (plus venvs), not site source.
+  globalIgnores(['dist', '[0-9][0-9][0-9][0-9] - */**']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [

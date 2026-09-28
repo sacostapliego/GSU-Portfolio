@@ -37,7 +37,7 @@ export const courses: Course[] = [
     code: 'CSC 2510',
     name: 'Theory Foundations of Computer Science',
     language: 'python',
-    path: '2510 - Principles of Computer Science',
+    path: '2510 - Theory Foundations of Computer Science',
     image: img2510
   },
   {
@@ -45,7 +45,7 @@ export const courses: Course[] = [
     code: 'CSC 2720',
     name: 'Data Structures and Algorithms',
     language: 'python',
-    path: '2720 - Data Structures and Algorithms',
+    path: '2720 - Data Structures',
     image: img2720
   },
   {
@@ -87,7 +87,8 @@ export const courses: Course[] = [
     name: 'Operating Systems',
     language: 'java',
     path: '4320 - Operating Systems',
-    image: img4320
+    image: img4320,
+    link: 'https://github.com/sacostapliego/Operating-Systems-Projects'
   },
   {
     id: 'csc-4370',
@@ -103,7 +104,7 @@ export const courses: Course[] = [
     code: 'CSC 4520',
     name: 'Design & Analysis of Algorithms',
     language: 'mixed',
-    path: '4520 - Design & Analysis of Algorithms',
+    path: '4520 - Design & Analysis',
     image: img4520
   },
   {
