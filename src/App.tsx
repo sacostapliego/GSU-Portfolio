@@ -106,8 +106,11 @@ function PortfolioHome({ onNavigation }: { onNavigation: (route: string) => void
     const isExternal = /^https?:\/\//.test(course.link)
     if (isExternal) {
       window.open(course.link, '_blank')
-    } else {
+    } else if (course.link.startsWith('#')) {
       onNavigation(course.link)
+    } else {
+      // A static page shipped alongside the app (e.g. the 4370 course folder)
+      window.location.href = import.meta.env.BASE_URL + course.link.replace(/^\.\//, '')
     }
   }
 
