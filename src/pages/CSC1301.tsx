@@ -3,6 +3,9 @@ import { motion } from 'framer-motion'
 import { useCallback, useRef, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import gsuBackground from '../assets/gsu_background.jpg'
+import homeImage from '../assets/image.png'
+import pythonLogo from '../assets/python-logo.svg'
 import PythonTerminal from '../components/PythonTerminal'
 import { csc1301Programs } from '../data/csc1301Programs'
 import { useDragResize } from '../hooks/useDragResize'
@@ -149,7 +152,7 @@ export default function CSC1301({ onBack }: CSC1301Props) {
     <Box
       h="100vh"
       w="100vw"
-      bgImage={`linear-gradient(rgba(15, 15, 17, 0.35), rgba(15, 15, 17, 0.65)), url('/gsu_background.jpg')`}
+      bgImage={`linear-gradient(rgba(15, 15, 17, 0.35), rgba(15, 15, 17, 0.65)), url('${gsuBackground}')`}
       bgSize="cover"
       bgPos="center"
       bgRepeat="no-repeat"
@@ -291,7 +294,7 @@ export default function CSC1301({ onBack }: CSC1301Props) {
                       alignItems="center"
                       gap={3}
                     >
-                      <Image src="/python-logo.svg" alt="" boxSize="15px" flexShrink={0} />
+                      <Image src={pythonLogo} alt="" boxSize="15px" flexShrink={0} />
                       <Text truncate>{program.fileName}</Text>
                     </Box>
                   )
@@ -328,7 +331,7 @@ export default function CSC1301({ onBack }: CSC1301Props) {
                     alignItems="center"
                     gap={2}
                   >
-                    <Image src="/python-logo.svg" alt="" boxSize="16px" flexShrink={0} />
+                    <Image src={pythonLogo} alt="" boxSize="16px" flexShrink={0} />
                     <Text fontSize="15px" whiteSpace="nowrap">
                       {selectedProgram.fileName}
                     </Text>
@@ -444,7 +447,7 @@ export default function CSC1301({ onBack }: CSC1301Props) {
           onHoverChange={setHoveredDockItem}
           onClick={onBack}
         >
-          <Image src="/image.png" alt="Home" w="100%" h="100%" objectFit="cover" display="block" />
+          <Image src={homeImage} alt="Home" w="100%" h="100%" objectFit="cover" display="block" />
         </DockItem>
 
         <DockItem
@@ -456,7 +459,7 @@ export default function CSC1301({ onBack }: CSC1301Props) {
           isRunning={isWindowVisible}
         >
           <Flex w="100%" h="100%" align="center" justify="center" bg="#0f1b2d" borderRadius="14px">
-            <Image src="/python-logo.svg" alt="" w="60%" h="60%" objectFit="contain" />
+            <Image src={pythonLogo} alt="" w="60%" h="60%" objectFit="contain" />
           </Flex>
         </DockItem>
       </Flex>

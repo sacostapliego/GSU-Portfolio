@@ -10,6 +10,7 @@ const crossOriginIsolationHeaders = {
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/GSU-Portfolio/',
   plugins: [react()],
   server: { headers: crossOriginIsolationHeaders },
   preview: { headers: crossOriginIsolationHeaders },
